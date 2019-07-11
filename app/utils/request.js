@@ -1,3 +1,4 @@
+import { API_URL } from '../constants';
 /**
  * Parses the JSON returned by a network request
  *
@@ -37,7 +38,28 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default function request(url, options) {
+export function getRequest(targetURL) {
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  };
+  return fetch(API_URL + targetURL, options)
+    .then(checkStatus)
+    .then(parseJSON);
+}
+
+export function postRequest(url, data) {
+  const options = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: { ...data },
+  };
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON);

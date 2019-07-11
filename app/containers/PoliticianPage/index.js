@@ -11,9 +11,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import Onepng from '../../images/partyLogo/01.png';
-import Twopng from '../../images/partyLogo/02.png';
-
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import {
@@ -44,7 +41,7 @@ import saga from './saga';
 
 const key = 'home';
 
-export function HomePage({
+export function PoliticianPage({
   username,
   onSubmitForm,
   getAutoSuggest,
@@ -77,7 +74,7 @@ export function HomePage({
           <span>{suggestion.name}</span>
         </NameWrapper>
         <PartyWrapper>
-          <PartyIcon src={suggestion.party ===  "2" ? Onepng  : Twopng  } />
+          <PartyIcon src={suggestion.party === '2' ? Onepng : Twopng} />
         </PartyWrapper>
       </SuggestWrapper>
     );
@@ -99,7 +96,7 @@ export function HomePage({
         <title>::여의도 와쳐</title>
         <meta
           name="description"
-          content="A React.js Boilerplate application homepage"
+          content="A React.js Boilerplate application politicianPage"
         />
       </Helmet>
       <TitleRow>
@@ -119,7 +116,7 @@ export function HomePage({
   );
 }
 
-HomePage.propTypes = {
+PoliticianPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -158,4 +155,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(HomePage);
+)(PoliticianPage);
